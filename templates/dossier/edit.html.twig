@@ -1,0 +1,29 @@
+{% block stylesheets %}
+    <link href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Modifier le Dossier</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Formulaire de Modification</h5>
+            </div>
+            <div class="card-body">
+                {{ include('dossier/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="{{ path('app_dossier_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+
+        <div class="mt-4">
+            <h5 class="text-danger">Suppression du Dossier</h5>
+            {{ include('dossier/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

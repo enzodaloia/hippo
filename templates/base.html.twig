@@ -5,49 +5,53 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}"></link>
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
-            <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
-            <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('assets/js/app.js') }}"></script>
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <!-- Logo -->
-                <a class="navbar-brand" href="#">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="75" class="d-inline-block align-text-top">
-                </a>
-
-                <!-- Bouton pour mobile -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Liens de la navbar -->
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                    <a class="nav-link active" href="#">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">À propos</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+        <header class="header_section">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <div class="custom_menu-btn">
+                    <button onclick="openNav()">
+                    <span class="s-1"> </span>
+                    <span class="s-2"> </span>
+                    <span class="s-3"> </span>
+                    </button>
                 </div>
-            </div>
-        </nav>
+                <div id="myNav" class="overlay">
+                    <div class="menu_btn-style ">
+                    <button onclick="closeNav()">
+                        <span class="s-1"> </span>
+                        <span class="s-2"> </span>
+                        <span class="s-3"> </span>
+                    </button>
+                    </div>
+                    <div class="overlay-content">
+                    <a class="active" href="index.html">
+                        Accueil
+                    </a>
+                    <a class="" href="#">
+                        Blog
+                    </a>
+                    <a class="" href="#">
+                        Gallerie
+                    </a>
+                    {% if app.user %}
+                        <a class="" href="#">
+                            Back-office
+                        </a>
+                    {% endif %}
+                    </div>
+                </div>
+                <a class="navbar-brand" href="{{path('app_index')}}">
+                    <img src="{{asset('img/logo/Logo.png')}}" class="w-50"></img>
+                </a>
+            </nav>
+        </header>
 
         {% block body %}{% endblock %}
     </body>

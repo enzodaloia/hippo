@@ -1,0 +1,49 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card" style="max-width: 600px; width: 100%;">
+        <div class="col-md-12">
+            <div class="card shadow-lg p-4">
+                <img class="mb-3" src="{{asset('img/logo/Logo.png')}}"></img>
+                <h2 class="text-center mb-4">Enregistre toi bébou <i class="fas fa-hand-holding-heart"></i></h2>
+
+                {{ form_start(registrationForm) }}
+
+                <div class="mb-3">
+                    <label for="{{ registrationForm.email.vars.id }}" class="form-label">
+                        <i class="fas fa-envelope"></i> Email
+                    </label>
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Entre ton email'}}) }}
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ registrationForm.plainPassword.vars.id }}" class="form-label">
+                        <i class="fas fa-lock"></i> Mot de passe
+                    </label>
+                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Entre ton mot de passe'}}) }}
+                    {{ form_errors(registrationForm.plainPassword) }}
+                </div>
+
+                <div class="form-check mb-3">
+                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                    <label class="form-check-label" for="{{ registrationForm.agreeTerms.vars.id }}">
+                        J'accepte les termes et conditions.
+                    </label>
+                    {{ form_errors(registrationForm.agreeTerms) }}
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-user-plus"></i> Enregistrer
+                </button>
+
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

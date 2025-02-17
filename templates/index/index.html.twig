@@ -1,15 +1,174 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}Accueil - Skali{% endblock %}
 
 {% block body %}
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+<div class="hero_area">
+  <section class="slider_section position-relative">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="detail-box col-lg-4 col-md-5">
+          <div id="" class="carousel slide slider_text_carousel" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="detail_content">
+                  <div>
+                    <h1>
+                      Photographie <br>
+                      Sportive
+                    </h1>
+                    <a href="#about_section" class="">
+                      En savoir <i class="fa fa-plus"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="img-box col-lg-8 col-md-7">
+          <div id="" class="carousel slide slider_image_carousel carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="img-header" src="{{asset('img/slider-img2.jpg')}}" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- end slider section -->
 </div>
-<i class="fa fa-edit"></i>
+
+<!-- about section -->
+
+<section id ="about_section" class="about_section ">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="img-box col-lg-8 col-md-7">
+        <img src="{{asset('img/about-img.jpg')}}" alt="" />
+      </div>
+      <div class="detail-box detail_box_common col-lg-4 col-md-5 text_center">
+        <div class="heading_container heading_center">
+          <h2>
+            A propos de nous
+          </h2>
+        </div>
+        <p>
+          Skali est une entreprise spécialisée dans la photographie sportive et la communication visuelle.
+          Passionnée par l’action et l’émotion du sport, elle capture l’intensité des moments clés, des performances athlétiques aux instants de dépassement de soi.
+          Grâce à une expertise artistique et technique, Skali sublime chaque mouvement à travers des images percutantes et dynamiques.
+          Que ce soit pour des événements sportifs, des portraits d’athlètes ou du contenu visuel dédié aux marques,
+          l’entreprise met son savoir-faire au service des professionnels et des passionnés souhaitant valoriser leur univers sportifavec des visuels uniques et impactants.
+        </p>
+        <a href="#portfolio_section">
+          Nos réalisations
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end about section -->
+
+
+<!-- portfolio section -->
+
+<section id="portfolio_section" class="portfolio_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        Portfolio
+      </h2>
+    </div>
+    <div class="portfolio_container ">
+      <div class="box-1">
+        <div class="img-box b-1">
+          <img src="{{asset('img/p1.jpg')}}" alt="">
+          <div class="btn-box">
+            <a href="" class="btn-1">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <div class="img-box b-2">
+          <img src="{{asset('img/p2.jpg')}}" alt="">
+          <div class="btn-box">
+            <a href="" class="btn-1">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="box-2">
+        <div class="box-2-top">
+          <div class="img-box b-3">
+            <img src="{{asset('img/p3.jpg')}}" alt="">
+            <div class="btn-box">
+              <a href="" class="btn-1">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box-3">
+        <div class="img-box b-1">
+          <img src="{{asset('img/p4.jpg')}}" alt="">
+          <div class="btn-box">
+            <a href="" class="btn-1">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <div class="img-box b-2">
+          <img src="{{asset('img/p5.jpg')}}" alt="">
+          <div class="btn-box">
+            <a href="" class="btn-1">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="" class="read_btn">
+        Tous voir
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-6">
+        <p>
+          &copy; <span id="displayYear"></span><a href="{{path('app_login')}}">All</a> <a href="{{path('app_register')}}">Rights</a> Reserved. Design
+          by Enzo D'aloia-D'ignazio
+        </p>
+      </div>
+      <div class="col-xl-6">
+        <div class="link_box">
+          <a class="active" href="index.html">
+              Accueil
+          </a>
+          <a class="" href="about.html">
+              A propos de nous
+          </a>
+          <a class="" href="portfolio.html">
+              Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 {% endblock %}

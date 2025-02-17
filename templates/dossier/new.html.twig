@@ -1,0 +1,21 @@
+{% block stylesheets %}
+    <link href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="mb-3">
+            <a href="{{ path('app_dossier_index') }}" class="btn btn-secondary">Retour</a>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h5 class="card-title mb-0 text-center" style="color:white;">Créer un Nouveau Dossier</h5>
+            </div>
+            <div class="card-body">
+                {{ include('dossier/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

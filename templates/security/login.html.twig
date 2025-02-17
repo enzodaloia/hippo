@@ -1,0 +1,46 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="max-width: 450px; width: 100%;">
+        <img class="mb-3" src="{{asset('img/logo/Logo.png')}}"></img>
+        <h2 class="text-center mb-4">Connecte toi mon chou <i class="fa fa-heart"></i></h2>
+        
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="alert alert-info">
+                You are logged in as <strong>{{ app.user.userIdentifier }}</strong>, 
+                <a href="{{ path('app_logout') }}" class="text-danger">Logout</a>
+            </div>
+        {% else %}
+            <form method="post">
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" 
+                           class="form-control" autocomplete="email" required autofocus>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" name="password" id="inputPassword" 
+                           class="form-control" autocomplete="current-password" required>
+                </div>
+                
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                
+                <button class="btn btn-primary w-100" type="submit">Sign in</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+{% endblock %}
