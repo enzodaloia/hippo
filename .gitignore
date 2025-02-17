@@ -1,17 +1,41 @@
-
 ###> symfony/framework-bundle ###
-/.env.local
+# Fichiers d'environnement sensibles
+.env.local
 /.env.local.php
 /.env.*.local
+
+# Fichiers de secrets symfony
 /config/secrets/prod/prod.decrypt.private.php
+
+# Dossiers générés
 /public/bundles/
-/var/
-/vendor/
+var/
+vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
+# Dossier des modules npm
 /node_modules/
+
+# Dossier de build de Webpack Encore
 /public/build/
+
+# Logs d'erreurs npm et yarn
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+# IDE
+/.idea/
+/.vscode/
+
+# Fichiers générés par Composer
+/composer.lock
+/.composer/
+
+# Dossier pour les archives zip générées par Symfony
+/.symfony.*
+
+# Cache et logs Symfony
+/var/cache/
+/var/logs/
