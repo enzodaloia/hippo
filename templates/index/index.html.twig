@@ -134,38 +134,12 @@
       </div>
     </div>
     <div>
-      <a href="" class="read_btn">
+      <a href="{{path('app_dossiers')}}" class="read_btn">
         Tous voir
       </a>
     </div>
   </div>
 </section>
-
-<footer class="footer_section">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xl-6">
-        <p>
-          &copy; <span id="displayYear"></span><a href="{{path('app_login')}}">All</a> <a href="{{path('app_register')}}">Rights</a> Reserved. Design
-          by Enzo D'aloia-D'ignazio
-        </p>
-      </div>
-      <div class="col-xl-6">
-        <div class="link_box">
-          <a class="active" href="index.html">
-              Accueil
-          </a>
-          <a class="" href="about.html">
-              A propos de nous
-          </a>
-          <a class="" href="portfolio.html">
-              Portfolio
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

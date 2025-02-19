@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\DossierRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -34,9 +35,14 @@ class Dossier
     #[ORM\OneToMany(targetEntity: Fichier::class, mappedBy: 'folder')]
     private Collection $fichiers;
 
+    #[ORM\Column(length: 255)]
+    private ?string $token = null;
+
     public function __construct()
     {
         $this->fichiers = new ArrayCollection();
+        $this->createdAt = new DateTime();
+        $this->token = bin2hex(random_bytes(16));
     }
 
     public function getId(): ?int
@@ -118,6 +124,18 @@ class Dossier
                 $fichier->setFolder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): static
+    {
+        $this->token = $token;
 
         return $this;
     }

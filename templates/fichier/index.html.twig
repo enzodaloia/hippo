@@ -3,47 +3,43 @@
     <link href="{{ asset('node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}">
 {% endblock %}
+
 {% block body %}
     {% include 'components/navbarBack.html.twig' %}
+
     <div class="container mt-4">
         <div class="row mb-3">
             <div class="col">
-                <a href="{{ path('app_dossier_index') }}" class="btn btn-secondary"><i class="fa fa-arrow-left"></i></a>
-                <a href="{{ path('app_fichier_new', {'token': dossier.token}) }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                <a href="{{ path('app_fichier_new') }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header bg-primary">
-                <h5 class="card-title text-center text-white">{{ dossier.libelle }}</h5>
+                <h5 class="card-title text-center text-white">Liste des photos</h5>
             </div>
             <div class="card-body">
-                <table class="table table-striped table-bordered" id="dossierTable">
+                <table class="table table-striped table-bordered" id="fichierTable">
                     <thead>
                         <tr>
-                            <th>Image</th>
+                            <th>Images</th>
                             <th>Créé le</th>
-                            <th></th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for fichier in fichiers %}
                         <tr>
-                            <td class="text-center align-middle">
-                                {% set path = 'img/imgFichier/' ~ fichier.token ~ '.' ~ fichier.ext %}
-                                <img src="{{asset(path)}}" style="max-width: 300px;"></img>
-                            </td>
-                            <td class="text-center align-middle">
-                                {{ fichier.createdAt ? dossier.createdAt|date('d/m/Y') : '' }}
-                            </td>
-                            <td class="text-center align-middle">
+                            <td>{{ fichier.ext }}</td>
+                            <td>{{ fichier.createdAt ? fichier.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+                            <td>
                                 <a href="{{ path('app_fichier_show', {'token': fichier.token}) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                 <a href="{{ path('app_fichier_edit', {'token': fichier.token}) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                             </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="5" class="text-center">Aucun dossier trouvé</td>
+                            <td colspan="4" class="text-center">Aucun fichier trouvé</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -52,14 +48,15 @@
         </div>
     </div>
 {% endblock %}
+
 {% block javascripts %}
     <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('node_modules/datatables.net/js/dataTables.min.js') }}"></script>
-    <script src="{{asset('node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="{{ asset('node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#dossierTable').DataTable({
+            $('#fichierTable').DataTable({
                 pageLength: 50,
                 language: {
                     url: "{{ asset('json/dataTables_fr.json') }}",

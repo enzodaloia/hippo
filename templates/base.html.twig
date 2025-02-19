@@ -13,46 +13,75 @@
         {% endblock %}
     </head>
     <body>
-        <header class="header_section">
-            <nav class="navbar navbar-expand-lg custom_nav-container">
-                <div class="custom_menu-btn">
-                    <button onclick="openNav()">
-                    <span class="s-1"> </span>
-                    <span class="s-2"> </span>
-                    <span class="s-3"> </span>
-                    </button>
-                </div>
-                <div id="myNav" class="overlay">
-                    <div class="menu_btn-style ">
-                    <button onclick="closeNav()">
+        <div>
+            <header class="header_section row">
+                <nav class="navbar navbar-expand-lg custom_nav-container">
+                    <div class="custom_menu-btn">
+                        <button onclick="openNav()">
                         <span class="s-1"> </span>
                         <span class="s-2"> </span>
                         <span class="s-3"> </span>
-                    </button>
+                        </button>
                     </div>
-                    <div class="overlay-content">
+                    <div id="myNav" class="overlay">
+                        <div class="menu_btn-style ">
+                        <button onclick="closeNav()">
+                            <span class="s-1"> </span>
+                            <span class="s-2"> </span>
+                            <span class="s-3"> </span>
+                        </button>
+                        </div>
+                        <div class="overlay-content">
+                        <a class="active" href="index.html">
+                            Accueil
+                        </a>
+                        <a class="" href="#">
+                            Blog
+                        </a>
+                        <a class="" href="#">
+                            Gallerie
+                        </a>
+                        {% if app.user %}
+                            <a class="" href="{{path('app_dossier_index')}}">
+                                Back-office
+                            </a>
+                        {% endif %}
+                        </div>
+                    </div>
+                    <a class="navbar-brand" href="{{path('app_index')}}">
+                        <img src="{{asset('img/logo/Logo.png')}}" class="w-50"></img>
+                    </a>
+                </nav>
+            </header>
+            <div class="row">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
+        <footer class="footer_section" style="margin-top: auto;">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-xl-6">
+                    <p>
+                    &copy; <span id="displayYear"></span><a href="{{path('app_login')}}">All</a> <a href="{{path('app_register')}}">Rights</a> Reserved. Design
+                    by Enzo D'aloia-D'ignazio
+                    </p>
+                </div>
+                <div class="col-xl-6">
+                    <div class="link_box">
                     <a class="active" href="index.html">
                         Accueil
                     </a>
-                    <a class="" href="#">
-                        Blog
+                    <a class="" href="about.html">
+                        A propos de nous
                     </a>
-                    <a class="" href="#">
-                        Gallerie
+                    <a class="" href="portfolio.html">
+                        Portfolio
                     </a>
-                    {% if app.user %}
-                        <a class="" href="#">
-                            Back-office
-                        </a>
-                    {% endif %}
                     </div>
                 </div>
-                <a class="navbar-brand" href="{{path('app_index')}}">
-                    <img src="{{asset('img/logo/Logo.png')}}" class="w-50"></img>
-                </a>
-            </nav>
-        </header>
-
-        {% block body %}{% endblock %}
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Skali{% endblock %}
+
+{% block body %}
+{# {% for d in dossiers %}
+<div class="img-box b-1">
+  {% set path = 'img/imgDossier/' ~ d.token ~ d.ext %}
+  <img src="{{asset(path)}}" alt="">
+  <div class="btn-box">
+    <a href="" class="btn-1">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+{% endfor %} #}
+
+<section id="portfolio_section" class="portfolio_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        Dossiers
+      </h2>
+    </div>
+    <div class="portfolio_container">
+      {% for d in dossiers %}
+        <div class="box-1">
+          <div class="img-box b-1">
+            {% set path = 'img/imgDossier/' ~ d.token ~ '.' ~ d.ext %}
+            <img src="{{asset(path)}}" alt="">
+            <p>{{d.libelle}}</p>
+            <div class="btn-box">
+              <a href="" class="btn-1">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+{% endblock %}

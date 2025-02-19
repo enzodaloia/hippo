@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FichierRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,6 +24,15 @@ class Fichier
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $token = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+        $this->token = bin2hex(random_bytes(16));
+    }
 
     public function getId(): ?int
     {
@@ -61,6 +71,18 @@ class Fichier
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): static
+    {
+        $this->token = $token;
 
         return $this;
     }
