@@ -35,7 +35,7 @@ final class DossierController extends AbstractController
             if ($file) {
                 $ext = $file->guessExtension();
                 $newFilename = $dossier->getToken() . '.' . $ext;
-                $pathUpload = "../public/img/imgDosssier";
+                $pathUpload = "../public/img/imgDossier";
                 try {
                     $file->move(
                         $pathUpload,
@@ -79,7 +79,7 @@ final class DossierController extends AbstractController
             if ($file) {
                 $ext = $file->guessExtension();
                 $newFilename = $dossier->getToken() . '.' . $ext;
-                $pathUpload = "../public/img/imgDosssier";
+                $pathUpload = "../public/img/imgDossier";
                 try {
                     $file->move(
                         $pathUpload,
@@ -106,6 +106,25 @@ final class DossierController extends AbstractController
     {
         $dossier = $entityManager->getRepository(Dossier::class)->findOneByToken($token);
         if ($this->isCsrfTokenValid('delete'.$dossier->getToken(), $request->getPayload()->getString('_token'))) {
+            $fichiers = $entityManager->getRepository(Fichier::class)->findBy(['folder' => $dossier]);
+
+            $fichierDirectory = $this->getParameter('kernel.project_dir') . '/public/img/imgFichier/';
+
+            foreach ($fichiers as $fichier) {
+                $filePath = $fichierDirectory . $fichier->getToken() . '.' . $fichier->getExt();
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+                $entityManager->remove($fichier);
+            }
+
+            $dossierDirectory = $this->getParameter('kernel.project_dir') . '/public/img/imgDossier/';
+            $dossierFile = glob($dossierDirectory . $dossier->getToken() . '.*');
+            foreach ($dossierFile as $file) {
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+            }
             $entityManager->remove($dossier);
             $entityManager->flush();
         }

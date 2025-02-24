@@ -108,6 +108,12 @@ final class FichierController extends AbstractController
     {
         $fichier = $entityManager->getRepository(Fichier::class)->findOneByToken($token);
         if ($this->isCsrfTokenValid('delete'.$fichier->getToken(), $request->getPayload()->getString('_token'))) {
+            $fichierDirectory = $this->getParameter('kernel.project_dir') . '/public/img/imgFichier/';
+            $filePath = $fichierDirectory . $fichier->getToken() . '.' . $fichier->getExt();
+
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
             $entityManager->remove($fichier);
             $entityManager->flush();
         }

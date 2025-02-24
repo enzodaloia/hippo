@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_dossier_delete', {'token': dossier.token}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+<form method="post" action="{{ path('app_dossier_delete', {'token': dossier.token}) }}" onsubmit="return confirm('Es-tu sur de vouloir supprimer ce dossier ? (tous les fichiers associés seront supprimés)');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ dossier.token) }}">
     <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
 </form>

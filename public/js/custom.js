@@ -37,3 +37,14 @@ function myMap() {
     };
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 }
+
+function openImageModal(imageSrc) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImage");
+    modal.style.display = "flex";
+    modalImg.src = imageSrc;
+}
+
+function closeImageModal() {
+    document.getElementById("imageModal").style.display = "none";
+}

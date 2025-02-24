@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil - Skali{% endblock %}
+{% block title %}Dossiers - Skali{% endblock %}
 
 {% block body %}
 {# {% for d in dossiers %}
@@ -15,7 +15,7 @@
 </div>
 {% endfor %} #}
 
-<section id="portfolio_section" class="portfolio_section layout_padding">
+<section id="portfolio_section" class="portfolio_section">
   <div class="container">
     <div class="heading_container heading_center">
       <h2>
@@ -27,11 +27,14 @@
         <div class="box-1">
           <div class="img-box b-1">
             {% set path = 'img/imgDossier/' ~ d.token ~ '.' ~ d.ext %}
-            <img src="{{asset(path)}}" alt="">
+            <img src="{{asset(path)}}" alt="{{d.token}}"  style="max-width: 300px;">
             <div class="btn-box">
-              <a href="" class="btn-1">
+              <a href="{{path('app_fichiers', {'token': d.token})}}" class="btn-1">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
               </a>
+            </div>
+            <div class="label-box">
+              <p>{{ d.libelle }}</p>
             </div>
           </div>
         </div>
@@ -39,6 +42,7 @@
     </div>
   </div>
 </section>
+
 
 
 {% endblock %}

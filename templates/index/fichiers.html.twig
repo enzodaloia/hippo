@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Images - Skali{% endblock %}
+
+{% block body %}
+<section id="portfolio_section" class="portfolio_section">
+    <div class="container">
+        <a href="{{path('app_dossiers')}}" class="btn btn-light" style="float: left;"><i class="fa fa-arrow-left"></i></a><br>
+        <div class="heading_container heading_center">
+            <h2>{{libelle}}</h2>
+        </div>
+        <div class="row">
+            {% for f in fichiers %}
+                <div class="col-12 col-sm-6 col-md-3 mb-4">
+                    <div class="box-1">
+                        <div>
+                            {% set path = 'img/imgFichier/' ~ f.token ~ '.' ~ f.ext %}
+                            <img src="{{ asset(path) }}" 
+                                 alt="{{ f.token }}" 
+                                 class="clickable-image" 
+                                 style="max-width: 100%; cursor: pointer;"
+                                 onclick="openImageModal('{{ asset(path) }}')">
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="imageModal" class="image-modal">
+            <span class="close" onclick="closeImageModal()">&times;</span>
+            <img class="modal-content" id="modalImage" style="max-width: 500px;">
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+{% endblock %}

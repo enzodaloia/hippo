@@ -36,8 +36,24 @@
                             </td>
                             <td class="text-center align-middle">{{ dossier.createdAt ? dossier.createdAt|date('d/m/Y') : '' }}</td>
                             <td class="text-center align-middle">
-                                <a href="{{ path('app_dossier_show', {'token': dossier.token}) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                <a href="{{ path('app_dossier_edit', {'token': dossier.token}) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                <div class="d-flex">
+                                    <div>
+                                        <a href="{{ path('app_dossier_show', {'token': dossier.token}) }}" class="btn btn-info btn-sm me-2">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a href="{{ path('app_dossier_edit', {'token': dossier.token}) }}" class="btn btn-warning btn-sm me-3">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <form method="post" action="{{ path('app_dossier_delete', {'token': dossier.token}) }}" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce dossier ? (Tous les fichiers associés seront supprimés)');">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ dossier.token) }}">
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     {% else %}

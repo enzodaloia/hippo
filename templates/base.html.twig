@@ -32,13 +32,10 @@
                         </button>
                         </div>
                         <div class="overlay-content">
-                        <a class="active" href="index.html">
+                        <a class="active" href="{{path('app_index')}}">
                             Accueil
                         </a>
-                        <a class="" href="#">
-                            Blog
-                        </a>
-                        <a class="" href="#">
+                        <a class="" href="{{path('app_dossiers')}}">
                             Gallerie
                         </a>
                         {% if app.user %}
@@ -69,13 +66,13 @@
                 </div>
                 <div class="col-xl-6">
                     <div class="link_box">
-                    <a class="active" href="index.html">
+                    <a class="active" href="{{path('app_index')}}">
                         Accueil
                     </a>
-                    <a class="" href="about.html">
+                    <a class="" href="{{ path('app_index') }}#about_section">
                         A propos de nous
                     </a>
-                    <a class="" href="portfolio.html">
+                    <a class="" href="{{ path('app_dossiers') }}">
                         Portfolio
                     </a>
                     </div>
