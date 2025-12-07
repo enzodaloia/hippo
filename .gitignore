@@ -20,6 +20,7 @@ vendor/
 
 # Dossier de build de Webpack Encore
 /public/build/
+/public/img/
 
 # Logs d'erreurs npm et yarn
 npm-debug.log

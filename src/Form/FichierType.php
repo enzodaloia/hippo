@@ -16,7 +16,7 @@ class FichierType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('ext', FileType::class, [
+            ->add('file', FileType::class, [
                 'label' => 'Joindre un fichier',
                 'mapped' => false,
                 'required' => false,

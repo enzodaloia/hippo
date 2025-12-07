@@ -32,8 +32,8 @@ final class FichierController extends AbstractController
         $dossier = $dossierRepository->findOneBy(['token' => $token]);
         $form = $this->createForm(FichierType::class, $fichier);
         $form->handleRequest($request);
-        $file = $form->get('ext')->getData();
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('file')->getData();
             $fichier->setFolder($dossier);
             if ($file) {
                 $ext = $file->guessExtension();
@@ -76,8 +76,8 @@ final class FichierController extends AbstractController
         $form = $this->createForm(FichierType::class, $fichier);
         $form->handleRequest($request);
 
-        $file = $form->get('ext')->getData();
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('file')->getData();
             if ($file) {
                 $ext = $file->guessExtension();
                 $newFilename = $fichier->getToken() . '.' . $ext;

@@ -30,8 +30,8 @@ final class DossierController extends AbstractController
         $dossier = new Dossier();
         $form = $this->createForm(DossierType::class, $dossier);
         $form->handleRequest($request);
-        $file = $form->get('ext')->getData();
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('file')->getData();
             if ($file) {
                 $ext = $file->guessExtension();
                 $newFilename = $dossier->getToken() . '.' . $ext;
@@ -74,8 +74,8 @@ final class DossierController extends AbstractController
         $dossier = $entityManager->getRepository(Dossier::class)->findOneByToken($token);
         $form = $this->createForm(DossierType::class, $dossier);
         $form->handleRequest($request);
-        $file = $form->get('ext')->getData();
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('file')->getData();
             if ($file) {
                 $ext = $file->guessExtension();
                 $newFilename = $dossier->getToken() . '.' . $ext;

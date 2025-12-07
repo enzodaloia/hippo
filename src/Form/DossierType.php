@@ -21,7 +21,7 @@ class DossierType extends AbstractType
             ->add('description', TextType::class, [
                 'label' => 'Description'
             ])
-            ->add('ext', FileType::class, [
+            ->add('file', FileType::class, [
                 'label' => 'Joindre un fichier',
                 'mapped' => false,
                 'required' => false,

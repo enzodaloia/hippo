@@ -3,18 +3,6 @@
 {% block title %}Dossiers - Skali{% endblock %}
 
 {% block body %}
-{# {% for d in dossiers %}
-<div class="img-box b-1">
-  {% set path = 'img/imgDossier/' ~ d.token ~ d.ext %}
-  <img src="{{asset(path)}}" alt="">
-  <div class="btn-box">
-    <a href="" class="btn-1">
-      <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </a>
-  </div>
-</div>
-{% endfor %} #}
-
 <section id="portfolio_section" class="portfolio_section">
   <div class="container">
     <div class="heading_container heading_center">
@@ -22,30 +10,27 @@
         Dossiers
       </h2>
     </div>
-    <div class="portfolio_container">
+    <div class="row g-3 mb-4">
       {% for d in dossiers %}
-        <div class="box-1">
-          <div class="img-box b-1">
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="box-1 position-relative">
             {% set path = 'img/imgDossier/' ~ d.token ~ '.' ~ d.ext %}
-            <img src="{{asset(path)}}" alt="{{d.token}}"  style="max-width: 300px;">
-            <div class="btn-box">
-              <a href="{{path('app_fichiers', {'token': d.token})}}" class="btn-1">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="label-box">
-              <p>{{ d.libelle }}</p>
-            </div>
+            <a href="{{ path('app_fichiers', {'token': d.token}) }}" class="d-block position-relative">
+              <img src="{{ asset(path) }}" alt="{{ d.token }}" class="img-fluid" loading="lazy">
+              <div class="label-box">
+                <p class="m-0">{{ d.libelle }}</p>
+              </div>
+            </a>
           </div>
         </div>
       {% endfor %}
+      <div class="pagination-container d-flex justify-content-center">
+        {{ knp_pagination_render(dossiers, null, {'template': 'pagination/bootstrap_v5_pagination.html.twig'}) }}
+      </div>
     </div>
-  </div>
 </section>
-
-
-
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
