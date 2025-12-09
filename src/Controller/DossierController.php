@@ -20,7 +20,7 @@ final class DossierController extends AbstractController
     public function index(DossierRepository $dossierRepository): Response
     {
         return $this->render('dossier/index.html.twig', [
-            'dossiers' => $dossierRepository->findAll(),
+            'dossiers' => $dossierRepository->findBy([], ['createdAt' => 'DESC']),
         ]);
     }
 

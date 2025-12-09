@@ -33,23 +33,30 @@ final class FichierController extends AbstractController
         $form = $this->createForm(FichierType::class, $fichier);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form->get('file')->getData();
-            $fichier->setFolder($dossier);
-            if ($file) {
-                $ext = $file->guessExtension();
-                $newFilename = $fichier->getToken() . '.' . $ext;
-                $pathUpload = "../public/img/imgFichier";
-                try {
-                    $file->move(
-                        $pathUpload,
-                        $newFilename
-                    );
-                } catch (FileException $e) {
+            $files = $form->get('file')->getData();
+            if ($files) {
+                foreach ($files as $file) {
+                    $fichier = new Fichier();
+                    $fichier->setFolder($dossier);
+                    $ext = $file->guessExtension() ?: 'bin';
+
+                    $newFilename = $fichier->getToken() . '.' . $ext;
+
+                    $pathUpload = "../public/img/imgFichier";
+
+                    try {
+                        $file->move($pathUpload, $newFilename);
+                    } catch (FileException $e) {
+                        continue;
+                    }
+
+                    $fichier->setExt($ext);
+                    $entityManager->persist($fichier);
                 }
-                $fichier->setExt($ext);
+
+                $entityManager->flush();
             }
-            $entityManager->persist($fichier);
-            $entityManager->flush();
+            // $entityManager->flush();
 
             return $this->redirectToRoute('app_dossier_show', ['token'=>$fichier->getFolder()->getToken()], Response::HTTP_SEE_OTHER);
         }
@@ -57,6 +64,7 @@ final class FichierController extends AbstractController
         return $this->render('fichier/new.html.twig', [
             'fichier' => $fichier,
             'form' => $form,
+            'dossier' => $token
         ]);
     }
 

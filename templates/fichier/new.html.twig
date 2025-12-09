@@ -7,7 +7,7 @@
 {% block body %}
     <div class="container mt-5">
         <div class="mb-3">
-            <a href="{{ path('app_fichier_index') }}" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Retour</a>
+            <a href="{{ path('app_dossier_show', {'token': dossier}) }}" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Retour</a>
         </div>
         <div class="card">
             <div class="card-header bg-primary">

@@ -1,4 +1,4 @@
-{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}, 'multipart' : true }) }}
     <div class="mb-3">
         {{ form_label(form.file, 'Sélectionner un Fichier (*)', {'label_attr': {'class': 'form-label'}}) }}
         {{ form_widget(form.file, {'attr': {'class': 'form-control'}}) }}
