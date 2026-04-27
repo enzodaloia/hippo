@@ -15,11 +15,13 @@ use App\Repository\DossierRepository;
 final class IndexController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager, DossierRepository $dossierRepository): Response
     {
-        $portfolio = $entityManager->getRepository(Portfolio::class)->findAll();
+        $dossiers = $entityManager->getRepository(Dossier::class)->findBy([], ['createdAt' => 'DESC'], 8);
+        // dd($dossiers);
         return $this->render('index/index.html.twig', [
-            'portfolio'=>$portfolio
+            // 'portfolio'=>$portfolio
+            'dossiers' => $dossiers,
         ]);
     }
 
